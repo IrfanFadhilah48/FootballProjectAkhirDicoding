@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import com.example.irfan.footballmatchschedule.API.ApiRepository
 import com.example.irfan.footballmatchschedule.Adapter.MatchAdapter
-import com.example.irfan.footballmatchschedule.Model.EventsLastLeague
+import com.example.irfan.footballmatchschedule.Model.EventsMatches
 import com.example.irfan.footballmatchschedule.R
-import com.example.irfan.footballmatchschedule.UI.LastMatchDetailUI.LastMatchDetailActivity
+import com.example.irfan.footballmatchschedule.UI.MatchDetailUI.MatchDetailActivity
 import com.example.irfan.footballmatchschedule.Utils.invisible
 import com.example.irfan.footballmatchschedule.Utils.visible
 import com.google.gson.Gson
@@ -26,7 +27,7 @@ class LastMatchFragment : Fragment(), LastMatchView{
     private lateinit var adapter: MatchAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
-    private var events: MutableList<EventsLastLeague> = mutableListOf()
+    private var events: MutableList<EventsMatches> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -47,8 +48,8 @@ class LastMatchFragment : Fragment(), LastMatchView{
     private fun setLayout() {
         presenter = LastMatchPresenter(this, ApiRepository(), Gson())
         adapter = MatchAdapter(events){
-            toast("anda memilih ${it.strEvent}")
-            startActivity<LastMatchDetailActivity>(LastMatchDetailActivity.INTENT to it)
+            toast("anda memilih ${it.idEvent}")
+            startActivity<MatchDetailActivity>(MatchDetailActivity.INTENT to it)
         }
         presenter.getEventsLast()
         recyclerView.adapter = adapter
@@ -64,7 +65,7 @@ class LastMatchFragment : Fragment(), LastMatchView{
         recyclerView.visible()
     }
 
-    override fun showEventList(data: List<EventsLastLeague>) {
+    override fun showEventList(data: List<EventsMatches>) {
         events.clear()
         events.addAll(data)
         adapter.notifyDataSetChanged()

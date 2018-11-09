@@ -2,7 +2,7 @@ package com.example.irfan.footballmatchschedule.UI.NextMatchUI
 
 import com.example.irfan.footballmatchschedule.API.ApiRepository
 import com.example.irfan.footballmatchschedule.API.TheSportDBApi
-import com.example.irfan.footballmatchschedule.Model.EventResponseNext
+import com.example.irfan.footballmatchschedule.Model.EventResponseMatches
 import com.google.gson.Gson
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -14,7 +14,7 @@ class NextMatchPresenter(private val view: NextMatchView, private val apiReposit
 
         doAsync {
             val data = gson.fromJson(apiRepository.doRequest(TheSportDBApi.getNextLeagueTeams()),
-                EventResponseNext::class.java
+                EventResponseMatches::class.java
             )
 
             uiThread {

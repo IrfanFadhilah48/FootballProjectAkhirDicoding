@@ -4,14 +4,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.irfan.footballmatchschedule.Model.EventsLastLeague
+import com.example.irfan.footballmatchschedule.Model.EventsMatches
 import com.example.irfan.footballmatchschedule.Utils.DateTimeConverter
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.*
 
-class MatchAdapter(private val items: List<EventsLastLeague>, private val listener: (
-    EventsLastLeague)-> Unit) : RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
+class MatchAdapter(private val items: List<EventsMatches>, private val listener: (
+        EventsMatches)-> Unit) : RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(EventUI().createView(AnkoContext.create(parent.context, parent)))
@@ -33,7 +33,7 @@ class MatchAdapter(private val items: List<EventsLastLeague>, private val listen
         val score_Home_Team : TextView = itemView.findViewById(ID_HOME_SCORE)
         val score_Away_Team : TextView = itemView.findViewById(ID_AWAY_SCORE)
 
-        fun bindItem(items : EventsLastLeague, clickListener: (EventsLastLeague) -> Unit){
+        fun bindItem(items : EventsMatches, clickListener: (EventsMatches) -> Unit){
             match_Date.text = DateTimeConverter.longDate(items.dateEvent!!)
             match_Home_Team.text = items.strHomeTeam
             match_Away_Team.text = items.strAwayTeam

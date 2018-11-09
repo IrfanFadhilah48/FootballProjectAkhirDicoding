@@ -3,7 +3,6 @@ package com.example.irfan.footballmatchschedule.Model
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class MatchDetail(
     val dateEvent: String?,
     val idAwayTeam: String?,
@@ -56,4 +55,4 @@ data class MatchDetail(
     val strTVStation: String?,
     val strThumb: String?,
     val strTime: String?
-): Parcelable
+)

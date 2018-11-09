@@ -7,14 +7,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import com.example.irfan.footballmatchschedule.API.ApiRepository
-import com.example.irfan.footballmatchschedule.Adapter.NextMatchAdapter
-import com.example.irfan.footballmatchschedule.Model.EventsNextLeague
+import com.example.irfan.footballmatchschedule.Adapter.MatchAdapter
+import com.example.irfan.footballmatchschedule.Model.EventsMatches
 import com.example.irfan.footballmatchschedule.R
-import com.example.irfan.footballmatchschedule.UI.LastMatchDetailUI.LastMatchDetailActivity
-import com.example.irfan.footballmatchschedule.UI.NextMatchDetailUI.NextMatchDetailActivity
+import com.example.irfan.footballmatchschedule.UI.MatchDetailUI.MatchDetailActivity
 import com.example.irfan.footballmatchschedule.Utils.invisible
 import com.example.irfan.footballmatchschedule.Utils.visible
 import com.google.gson.Gson
@@ -25,10 +23,10 @@ import org.jetbrains.anko.support.v4.toast
 class NextMatchFragment : Fragment(), NextMatchView {
 
     private lateinit var presenter: NextMatchPresenter
-    private lateinit var adapter: NextMatchAdapter
+    private lateinit var adapter: MatchAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
-    private var events: MutableList<EventsNextLeague> = mutableListOf()
+    private var events: MutableList<EventsMatches> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -47,9 +45,11 @@ class NextMatchFragment : Fragment(), NextMatchView {
 
     private fun setLayout(){
         presenter = NextMatchPresenter(this, ApiRepository(), Gson())
-        adapter = NextMatchAdapter(events){
-            toast("anda memilih ${it.strEvent}")
-            startActivity<NextMatchDetailActivity>(NextMatchDetailActivity.INTENT_NEXT to it)
+        adapter = MatchAdapter(events){
+            toast("anda memilih ${it.idEvent}")
+//            startActivity<NextMatchDetailActivity>(NextMatchDetailActivity.INTENT_NEXT to it)
+            startActivity<MatchDetailActivity>(MatchDetailActivity.INTENT to it)
+//            startActivity<MatchDetailActivity>("id" to "${it.idEvent}", "idHome" to "${it.idHomeTeam}", "awayTeam" to "${it.idAwayTeam}")
         }
         presenter.getEventLast()
         recyclerView.adapter = adapter
@@ -65,7 +65,7 @@ class NextMatchFragment : Fragment(), NextMatchView {
         recyclerView.visible()
     }
 
-    override fun showEventList(data: List<EventsNextLeague>) {
+    override fun showEventList(data: List<EventsMatches>) {
         events.clear()
         events.addAll(data)
         adapter.notifyDataSetChanged()
