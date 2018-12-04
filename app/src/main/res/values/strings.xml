@@ -2,6 +2,8 @@
     <string name="app_name">Football Match Schedule</string>
     <string name="tab_text_1">LAST MATCH</string>
     <string name="tab_text_2">NEXT MATCH</string>
+    <string name="tab_text_1_team">Overfiew</string>
+    <string name="tab_text_2_team">Players</string>
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -17,6 +19,8 @@
     <string name="next_matches">Next Matches</string>
     <string name="last_matches">Last Matches</string>
     <string name="ic_favorites">Favorites</string>
+    <string name="match">Match</string>
+    <string name="teams">Team</string>
     <string name="score_home">0</string>
     <string name="score_away">0</string>
     <string name="vs">VS</string>
@@ -28,5 +32,9 @@
     <string name="pencetak_gol_away">Pencetak Gol Away</string>
     <string name="strip">-</string>
     <string name="lineups">Lineups</string>
+    <string name="title_activity_team_detail_test">TeamDetailActivityTest</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_tester">TesterActivity</string>
 
 </resources>
