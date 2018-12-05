@@ -21,7 +21,7 @@ class TeamDetailOverfiewPresenter(private val view: TeamDetailOverfiewView, priv
             val data = gson.fromJson(apiRepository.doRequest(TheSportDBApi.getTeamsDetail(idString.toString())).await(),
                 ResponseTeam::class.java)
 
-            view.showOverview(data.teams)
+            data.teams?.let { view.showOverview(it) }
             view.hideLoading()
         }
     }

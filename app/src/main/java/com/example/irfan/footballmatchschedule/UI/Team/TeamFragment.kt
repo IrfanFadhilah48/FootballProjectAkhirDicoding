@@ -60,9 +60,7 @@ class TeamFragment: Fragment(), TeamView{
             toast("Anda memilih ${it.strTeam}")
             context?.startActivity<TeamDetailActivity>("id" to it.idTeam, TeamDetailActivity.INTENTDETAIl to it)
         }
-
         recyclerView.adapter = adapter
-
     }
 
     override fun showListLeague(data: List<LeagueItems>) {
@@ -111,7 +109,5 @@ class TeamFragment: Fragment(), TeamView{
         teams.clear()
         teams.addAll(data)
         adapter.notifyDataSetChanged()
-        Log.e("datanya", data.toString())
     }
-
 }

@@ -21,7 +21,8 @@ class SearchMatchPresenter(private val view: SearchMatchView, private val apiRep
             )
 
             view.hideLoading()
-            view.showAllMatch(data.event!!)
+//            view.showAllMatch(data.event!!)
+            data.event.let { view.showAllMatch(it) }
         }
     }
 }

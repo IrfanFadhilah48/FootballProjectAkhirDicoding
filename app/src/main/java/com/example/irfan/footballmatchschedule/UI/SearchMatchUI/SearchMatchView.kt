@@ -5,5 +5,5 @@ import com.example.irfan.footballmatchschedule.Model.EventsMatches
 interface SearchMatchView{
     fun hideLoading()
     fun showLoading()
-    fun showAllMatch(match: List<EventsMatches>)
+    fun showAllMatch(match: List<EventsMatches>?)
 }

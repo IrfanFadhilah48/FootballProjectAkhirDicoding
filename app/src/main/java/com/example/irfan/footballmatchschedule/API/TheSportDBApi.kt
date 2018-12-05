@@ -9,7 +9,7 @@ object TheSportDBApi{
     }
 
     fun getAllTeams(league : String): String{
-        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/search_all_teams.php?l=" + league
+        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/search_all_teams.php?l=" + league.replace(" ", "%20")
     }
 
     fun getPrevLeagueTeams(id: String): String{

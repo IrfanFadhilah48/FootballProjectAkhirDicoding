@@ -79,12 +79,13 @@ class SearchMatchFragment: Fragment(), SearchMatchView{
         progressBar.visible()
     }
 
-    override fun showAllMatch(match: List<EventsMatches>) {
+    override fun showAllMatch(match: List<EventsMatches>?) {
         events.clear()
-        var parse = match.filter { it.strSport!!.toLowerCase().contains("soccer") }
-        events.addAll(parse)
+        var parse = match?.filter { it.strSport!!.toLowerCase().contains("soccer") }
+        parse?.let { events.addAll(it) }
         adapter.notifyDataSetChanged()
 //        events.filter { it.strSport!!.toLowerCase().contains("soccer") }
         Log.e("datanya", match.toString())
     }
+
 }

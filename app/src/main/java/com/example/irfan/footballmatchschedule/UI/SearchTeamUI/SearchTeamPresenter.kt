@@ -19,7 +19,7 @@ class SearchTeamPresenter(private val view: SearchTeamView, private val apiRepos
                 ResponseTeam::class.java)
 
             view.hideLoading()
-            view.showAllTeams(data.teams)
+            data.teams?.let { view.showAllTeams(it) }
         }
     }
 }

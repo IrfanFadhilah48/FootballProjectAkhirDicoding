@@ -1,5 +1,6 @@
 package com.example.irfan.footballmatchschedule.UI.Team
 
+import android.util.Log
 import com.example.irfan.footballmatchschedule.API.ApiRepository
 import com.example.irfan.footballmatchschedule.API.TheSportDBApi
 import com.example.irfan.footballmatchschedule.Model.ResponseLeague
@@ -27,7 +28,8 @@ class TeamPresenter(val view: TeamView, val apiRepository: ApiRepository, val gs
             val data = gson.fromJson(apiRepository.doRequest(TheSportDBApi.getAllTeams(leagueName.toString())).await(),
                     ResponseTeam::class.java)
 
-            view.showTeamList(data.teams)
+            data.teams?.let { view.showTeamList(it) }
+//            view.showTeamList(data.teams)
             view.hideLoading()
         }
     }
